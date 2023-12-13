@@ -2,6 +2,12 @@ import { createStore } from 'redux';
 
 let nextTodoId = 0;
 
+// persist - сохранение чего-то
+const defaultValues = [
+  { id: 0, title: 'hello', completed: false },
+  { id: 1, title: 'hello 1', completed: false }
+]
+
 const todos = (state = [], action) => {
   switch (action.type) {
     case 'ADD_TODO': {
@@ -33,7 +39,7 @@ const todos = (state = [], action) => {
   }
 };
 
-const store = createStore(todos);
+const store = createStore(todos, defaultValues);
 
 // action creators
 const addTodo = (title) => ({
@@ -49,9 +55,9 @@ const toggleTodo = (todoId) => ({
 
 // using 
 console.log(store.getState());
-store.dispatch(addTodo('Learn React'));
-console.log(store.getState());
-store.dispatch(addTodo('Learn Redux'));
-console.log(store.getState());
-store.dispatch(toggleTodo(1));
-console.log(store.getState());
+// store.dispatch(addTodo('Learn React'));
+// console.log(store.getState());
+// store.dispatch(addTodo('Learn Redux'));
+// console.log(store.getState());
+// store.dispatch(toggleTodo(1));
+// console.log(store.getState());
