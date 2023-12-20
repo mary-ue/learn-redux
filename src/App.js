@@ -32,6 +32,26 @@ const mapStateToProps = (state) => ({
   count: state.count
 });
 
+// 1
+// const mapDispatchToProps = (dispatch) => ({
+//   inc: () => dispatch(increment),
+//   dec: () => dispatch(decrement),
+//   res: () => dispatch(reset)
+// });
+
+// 2
+// const mapDispatchToProps = (dispatch) => ({
+//   inc: bindActionCreators(increment, dispatch),
+//   dec: bindActionCreators(decrement, dispatch),
+//   res: bindActionCreators(reset, dispatch)
+// });
+
+// 3
+// const mapDispatchToProps = {
+//   inc: increment,
+//   dec: decrement,
+//   res: reset
+// };
 
 // const Counter = connect(mapStateToProps, mapDispatchToProps)(_Counter);
 const Counter = connect(mapStateToProps, {
