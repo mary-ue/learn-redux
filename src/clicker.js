@@ -1,4 +1,4 @@
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 
 const counter = (state = 0, action) => {
   if (action.type === "INCREMENT") {
@@ -16,7 +16,18 @@ const counter = (state = 0, action) => {
   return state;
 };
 
-const store = createStore(counter);
+
+// create middleware
+// store будет содержать все доступные ему методы: .getState, .dispatch, etc
+// next(action) обязательно должен быть вызывн внутри 
+const myLogger = (store) => (next) => (action) => {
+  console.log('dispatched an action ', action.type);
+  next (action);
+  console.log('updated state is', store.getState());
+} 
+
+// передаем 2 или 3 параметром
+const store = createStore(counter, applyMiddleware(myLogger));
 
 const increment = {
   type: "INCREMENT",
