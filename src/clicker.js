@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 
 const counter = (state = 0, action) => {
   if (action.type === "INCREMENT") {
@@ -16,6 +16,8 @@ const counter = (state = 0, action) => {
   return state;
 };
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 
 // create middleware
 // store будет содержать все доступные ему методы: .getState, .dispatch, etc
@@ -27,7 +29,7 @@ const myLogger = (store) => (next) => (action) => {
 } 
 
 // передаем 2 или 3 параметром
-const store = createStore(counter, applyMiddleware(myLogger));
+const store = createStore(counter, composeEnhancers(applyMiddleware(myLogger)));
 
 const increment = {
   type: "INCREMENT",
